@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 46947487}
   - component: {fileID: 46947486}
   - component: {fileID: 46947485}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 55899633}
   - component: {fileID: 55899635}
   - component: {fileID: 55899634}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,6 @@ GameObject:
   - component: {fileID: 78623976}
   - component: {fileID: 78623975}
   - component: {fileID: 78623974}
-  - component: {fileID: 78623979}
   m_Layer: 0
   m_Name: Claire
   m_TagString: Untagged
@@ -423,7 +422,7 @@ MonoBehaviour:
   checkRadius: 0.27
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 5376
   selectKey: 50
   cam: {fileID: 519420028}
   selected: 0
@@ -496,32 +495,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &78623979
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 78623973}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.020558484, y: -0.00856635}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.19128571, y: 0.22897816}
-  m_EdgeRadius: 0
 --- !u!1 &186210170
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,7 +761,7 @@ GameObject:
   m_Component:
   - component: {fileID: 573134615}
   - component: {fileID: 573134616}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: HeadCollider
   m_TagString: Head
   m_Icon: {fileID: 0}
@@ -847,7 +820,7 @@ GameObject:
   - component: {fileID: 578246606}
   - component: {fileID: 578246607}
   m_Layer: 8
-  m_Name: Platform (2)
+  m_Name: WhitePlatform2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -955,7 +928,7 @@ GameObject:
   - component: {fileID: 740069371}
   - component: {fileID: 740069372}
   m_Layer: 8
-  m_Name: Platform (3)
+  m_Name: WhitePlatform3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1064,7 +1037,6 @@ GameObject:
   - component: {fileID: 801472248}
   - component: {fileID: 801472247}
   - component: {fileID: 801472251}
-  - component: {fileID: 801472252}
   m_Layer: 0
   m_Name: Thomas
   m_TagString: Untagged
@@ -1113,7 +1085,7 @@ MonoBehaviour:
   checkRadius: 0.31
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 6400
   selectKey: 49
   cam: {fileID: 519420028}
   selected: 1
@@ -1213,32 +1185,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.0000005}
   m_EdgeRadius: 0
---- !u!61 &801472252
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801472246}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0051500797, y: -0.0025753826}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.14496484, y: 0.13981438}
-  m_EdgeRadius: 0
 --- !u!1 &867382543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,7 +1227,7 @@ GameObject:
   - component: {fileID: 1046167620}
   - component: {fileID: 1046167621}
   m_Layer: 8
-  m_Name: Platform
+  m_Name: WhitePlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1387,7 +1333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1072801635}
   - component: {fileID: 1072801636}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: HeadCollider
   m_TagString: Head
   m_Icon: {fileID: 0}
@@ -1555,7 +1501,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1202703141}
   - component: {fileID: 1202703142}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: HeadCollider
   m_TagString: Head
   m_Icon: {fileID: 0}
@@ -1627,7 +1573,6 @@ GameObject:
   - component: {fileID: 1305257209}
   - component: {fileID: 1305257208}
   - component: {fileID: 1305257207}
-  - component: {fileID: 1305257212}
   m_Layer: 0
   m_Name: John
   m_TagString: Untagged
@@ -1702,7 +1647,7 @@ MonoBehaviour:
   checkRadius: 0.53
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 4864
   selectKey: 51
   cam: {fileID: 519420028}
   selected: 0
@@ -1775,32 +1720,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1305257212
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1305257206}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.027619362, y: -0.0041090995}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.1939373, y: 0.11880338}
-  m_EdgeRadius: 0
 --- !u!1 &1415326890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1870,7 +1789,7 @@ GameObject:
   - component: {fileID: 1427386296}
   - component: {fileID: 1427386295}
   - component: {fileID: 1427386294}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ThomasFinish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2023,7 +1942,7 @@ GameObject:
   - component: {fileID: 1976834512}
   - component: {fileID: 1976834511}
   - component: {fileID: 1976834510}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: JohnFinish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2146,7 +2065,7 @@ GameObject:
   - component: {fileID: 2046867516}
   - component: {fileID: 2046867515}
   - component: {fileID: 2046867514}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ClaireFinish
   m_TagString: Untagged
   m_Icon: {fileID: 0}

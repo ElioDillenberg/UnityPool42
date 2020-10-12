@@ -5,6 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Controls controls;
+
+    public float xInitialPos;
+    public float yInitialPos;
     
     public float jumpForce = 100f;
     public float speed = 10f;
@@ -99,9 +102,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void Reset() {
+        if (transform.position.y < -25) {
+            transform.position = new Vector2(xInitialPos, yInitialPos);
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
+        Reset();
         Selection();
         Locomotion();
     }

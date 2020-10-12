@@ -9,14 +9,16 @@ public class GameManager : MonoBehaviour
 
     public FinishTrigger[] FinishTriggers;
     public GameObject gameWonCanvas;
-    // Start is called before the first frame update
-    // void Start()
-    // {
-        
-    // }
+    public int level;
 
-    private void Restart() {
-        SceneManager.LoadSceneAsync(0);
+    public void Restart() {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(level);
+    }
+
+    public void NextLevel() {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(level + 1);
     }
 
     private bool allPlayersReachedFinish() {
@@ -30,7 +32,6 @@ public class GameManager : MonoBehaviour
 
     private void checkFinish() {
         if (allPlayersReachedFinish()) {
-            // Debug.Log("YOU WON!");
             gameWonCanvas.SetActive(true);
             Time.timeScale = 0;
         }
