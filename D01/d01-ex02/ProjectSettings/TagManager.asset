@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Head
+  - Teleporter
+  - MovingPlatform
+  - Lever
+  - LeverDoor
+  - Button
+  - Bullet
+  - Turret
   layers:
   - Default
   - TransparentFX
@@ -21,11 +28,11 @@ TagManager:
   - YellowGround
   - BlueGround
   - RedGround
-  - 
-  - 
-  - 
-  - 
-  - 
+  - YellowInteraction
+  - BlueInteraction
+  - RedInteraction
+  - Transparent
+  - Bullet
   - 
   - 
   - 

@@ -1,10 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿// using System.Collections;
+// using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     public Controls controls;
+    public LayerMask canStandOn;
+    public Color canStandOnColor;
+
+    public float scaleX;
+    public float scaleY;
 
     public float xInitialPos;
     public float yInitialPos;
@@ -14,11 +19,9 @@ public class Player : MonoBehaviour
     public float gravity = 9.81f;
 
     private bool isGrounded;
-    public Transform groundCheck;
     public float checkRadius;
     public LayerMask whatIsGround;
 
-    private Rigidbody2D rb;
     private Vector2 movement;
 
     public KeyCode selectKey;
@@ -28,23 +31,46 @@ public class Player : MonoBehaviour
     public GameObject finishCollider;
     public bool reachedFinish;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
     private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("Entered" + other.name);
        if (other.gameObject == finishCollider) {
            reachedFinish = true;
+       } else if (other.tag == "Teleporter") {
+           Teleporter teleport = other.gameObject.GetComponent<Teleporter>();
+           transform.position = teleport.TelePos.position;
+       } else if (other.tag == "MovingPlatform") {
+           transform.parent = other.transform;
+       } else if (other.tag == "Lever") {
+           Lever lever = other.gameObject.GetComponent<Lever>();
+           lever.Trigger();
+       } else if (other.tag == "LeverDoor") {
+           LeverDoor lever = other.gameObject.GetComponent<LeverDoor>();
+           lever.Trigger();
+       } else if (other.tag == "Turret") {
+           Turret turret = other.gameObject.GetComponent<Turret>();
+           turret.targetAcquired = true;
        }
+    }
+
+    public void Die(){
+        cam.transform.parent = null;
+        Destroy(gameObject);
     }
 
     private void OnTriggerExit2D(Collider2D other) {
         if (other.gameObject == finishCollider) {
            reachedFinish = false;
+        } else if (other.tag == "MovingPlatform") {
+            transform.parent = null;
+        } else if (other.tag == "Turret") {
+            Turret turret = other.gameObject.GetComponent<Turret>();
+            turret.targetAcquired = false;
         }
+    }
+
+    private bool getPlayerInputAction() {
+        bool isUsing;
+        isUsing = Input.GetKey(controls.use);
+        return isUsing;
     }
 
     private Vector2 getPlayerInputMovement() {
@@ -77,7 +103,7 @@ public class Player : MonoBehaviour
             movement.x = 0f;
         }
 
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+        isGrounded = Physics2D.OverlapArea(new Vector2(transform.position.x - scaleX / 2, transform.position.y - scaleY / 2), new Vector2(transform.position.x + scaleX / 2, transform.position.y - (scaleY / 2 + 0.01f)), whatIsGround);
 
         if (selected && isGrounded && playerDirections.y == 1f) {
             movement.y = jumpForce * Time.deltaTime;

@@ -36,10 +36,19 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Assets\Scripts\Controls.cs" />
+     <Compile Include="Assets\Assets\Scripts\Door.cs" />
      <Compile Include="Assets\Assets\Scripts\FinishTrigger.cs" />
      <Compile Include="Assets\Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Assets\Scripts\LayerButton.cs" />
+     <Compile Include="Assets\Assets\Scripts\Lever.cs" />
+     <Compile Include="Assets\Assets\Scripts\LeverDoor.cs" />
+     <Compile Include="Assets\Assets\Scripts\MovingPlatform.cs" />
      <Compile Include="Assets\Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Assets\Scripts\Score.cs" />
+     <Compile Include="Assets\Assets\Scripts\Teleporter.cs" />
+     <Compile Include="Assets\Assets\Scripts\Turret.cs" />
     <Reference Include="UnityEngine">
         <HintPath>/Applications/Unity/Hub/Editor/2019.4.9f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

@@ -9,7 +9,6 @@ public class FinishTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject == playerHeart) {
-            Debug.Log(gameObject + " entered " + other.name);
             reachedFinish = true;
         }
     }
