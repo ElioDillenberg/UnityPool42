@@ -38,11 +38,18 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Arrow.cs" />
      <Compile Include="Assets\Scripts\AudioManager.cs" />
+     <Compile Include="Assets\Scripts\Building.cs" />
      <Compile Include="Assets\Scripts\Controls.cs" />
+     <Compile Include="Assets\Scripts\Entity.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\GameOver.cs" />
      <Compile Include="Assets\Scripts\GameRTSController.cs" />
+     <Compile Include="Assets\Scripts\HumanUnit.cs" />
+     <Compile Include="Assets\Scripts\OrcUnit.cs" />
+     <Compile Include="Assets\Scripts\RegularBuilding.cs" />
      <Compile Include="Assets\Scripts\Sound.cs" />
      <Compile Include="Assets\Scripts\Tower.cs" />
+     <Compile Include="Assets\Scripts\TowerRange.cs" />
      <Compile Include="Assets\Scripts\TownHall.cs" />
      <Compile Include="Assets\Scripts\Unit.cs" />
     <Reference Include="UnityEngine">

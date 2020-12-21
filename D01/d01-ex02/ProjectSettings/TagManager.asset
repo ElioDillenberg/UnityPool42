@@ -12,6 +12,7 @@ TagManager:
   - Button
   - Bullet
   - Turret
+  - PowerUp
   layers:
   - Default
   - TransparentFX

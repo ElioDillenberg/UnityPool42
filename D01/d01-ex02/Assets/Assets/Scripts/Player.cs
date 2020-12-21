@@ -4,32 +4,47 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Controls controls;
+    public GameManager gameManager;
     public LayerMask canStandOn;
     public Color canStandOnColor;
 
     public float scaleX;
     public float scaleY;
 
-    public float xInitialPos;
-    public float yInitialPos;
+    private float xInitialPos;
+    private float yInitialPos;
     
+    // Movement
     public float jumpForce = 100f;
     public float speed = 10f;
     public float gravity = 9.81f;
 
+    // Handle power ups
+    private float powerUpJumpForce;
+    private float powerUpSpeed;
+    private float powerUpTimer;
+
+    // Ground detection
     private bool isGrounded;
     public float checkRadius;
     public LayerMask whatIsGround;
 
     private Vector2 movement;
 
+    //character selection key
     public KeyCode selectKey;
+
     public GameObject cam;
     public bool selected;
 
     public GameObject finishCollider;
     public bool reachedFinish;
+
+    private void Start() {
+        gameManager = GameManager.instance;
+        xInitialPos = gameObject.transform.position.x;
+        yInitialPos = gameObject.transform.position.y;
+    }
 
     private void OnTriggerEnter2D(Collider2D other) {
        if (other.gameObject == finishCollider) {
@@ -48,6 +63,12 @@ public class Player : MonoBehaviour
        } else if (other.tag == "Turret") {
            Turret turret = other.gameObject.GetComponent<Turret>();
            turret.targetAcquired = true;
+       } else if (other.tag == "PowerUp") {
+           PowerUp powerUp =other.gameObject.GetComponent<PowerUp>(); 
+           powerUpJumpForce = powerUp.jumpForce;
+           powerUpSpeed = powerUp.speed;
+           powerUpTimer = powerUp.timer;
+           powerUp.Use();
        }
     }
 
@@ -67,18 +88,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    private bool getPlayerInputAction() {
-        bool isUsing;
-        isUsing = Input.GetKey(controls.use);
-        return isUsing;
-    }
+    // private bool getPlayerInputAction() {
+    //     bool isUsing;
+    //     isUsing = Input.GetKey(GameManager.instance.keyBinds["Use"]);
+    //     return isUsing;
+    // }
 
     private Vector2 getPlayerInputMovement() {
         Vector2 direction = new Vector2(0f, 0f);
 
-        bool up = Input.GetKey(controls.up);
-        bool left = Input.GetKey(controls.left);
-        bool right = Input.GetKey(controls.right);
+        bool jump = Input.GetKey(gameManager.keyBinds["Jump"]);
+        bool left = Input.GetKey(gameManager.keyBinds["Left"]);
+        bool right = Input.GetKey(gameManager.keyBinds["Right"]);
         if (right) {
             if (left) {
                 direction.x = 0f;
@@ -89,7 +110,7 @@ public class Player : MonoBehaviour
             direction.x = -1f;
         }
 
-        if (Input.GetKey(controls.up)) {
+        if (jump) {
             direction.y = 1f;
         }
         return direction;
@@ -98,7 +119,7 @@ public class Player : MonoBehaviour
     private void Locomotion() {
         Vector2 playerDirections = getPlayerInputMovement();
         if (selected) {
-            movement.x = playerDirections.x * speed;
+            movement.x = playerDirections.x * (speed + powerUpSpeed);
         } else {
             movement.x = 0f;
         }
@@ -106,7 +127,7 @@ public class Player : MonoBehaviour
         isGrounded = Physics2D.OverlapArea(new Vector2(transform.position.x - scaleX / 2, transform.position.y - scaleY / 2), new Vector2(transform.position.x + scaleX / 2, transform.position.y - (scaleY / 2 + 0.01f)), whatIsGround);
 
         if (selected && isGrounded && playerDirections.y == 1f) {
-            movement.y = jumpForce * Time.deltaTime;
+            movement.y = (jumpForce + powerUpJumpForce) * Time.deltaTime;
         } else if (isGrounded) {
             movement.y = 0;
         } else if (!isGrounded) {
@@ -117,13 +138,13 @@ public class Player : MonoBehaviour
     }
 
     private void Selection() {
-        if (Input.GetKey(selectKey)) {
+        if (Input.GetKeyDown(selectKey)) {
             selected = true;
             cam.transform.parent = transform;
             Vector3 currentPos = transform.position;
             Vector3 camPos = new Vector3(currentPos.x, currentPos.y, cam.transform.position.z);
             cam.transform.position = camPos;
-        } else if (Input.GetKey(controls.char1) || Input.GetKey(controls.char2) || Input.GetKey(controls.char3)) {
+        } else if (Input.GetKeyDown(gameManager.keyBinds["Select red"]) || Input.GetKeyDown(gameManager.keyBinds["Select blue"]) || Input.GetKeyDown(gameManager.keyBinds["Select yellow"])) {
             selected = false;
         }
     }
@@ -134,11 +155,21 @@ public class Player : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    // non-physics related update
+    void Update() {
+        if (powerUpTimer > 0) {
+            powerUpTimer -= Time.deltaTime;
+        } else {
+            powerUpJumpForce = 0;
+            powerUpSpeed = 0;
+        }
+        Selection();
+    }
+
+    // physics related update
     void FixedUpdate()
     {
         Reset();
-        Selection();
         Locomotion();
     }
 }

@@ -41,11 +41,15 @@
      <Compile Include="Assets\Assets\Scripts\Door.cs" />
      <Compile Include="Assets\Assets\Scripts\FinishTrigger.cs" />
      <Compile Include="Assets\Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Assets\Scripts\Keybinds.cs" />
      <Compile Include="Assets\Assets\Scripts\LayerButton.cs" />
+     <Compile Include="Assets\Assets\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Assets\Scripts\Lever.cs" />
      <Compile Include="Assets\Assets\Scripts\LeverDoor.cs" />
+     <Compile Include="Assets\Assets\Scripts\Menu.cs" />
      <Compile Include="Assets\Assets\Scripts\MovingPlatform.cs" />
      <Compile Include="Assets\Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Assets\Scripts\PowerUp.cs" />
      <Compile Include="Assets\Assets\Scripts\Score.cs" />
      <Compile Include="Assets\Assets\Scripts\Teleporter.cs" />
      <Compile Include="Assets\Assets\Scripts\Turret.cs" />

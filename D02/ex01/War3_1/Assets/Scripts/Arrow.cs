@@ -4,32 +4,42 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    public Unit target;
-    // public Transform pos1;
+    // target of the arrow
+    [HideInInspector]
+    public GameObject target;
+
+    // layer for Raycasting impact
+    public LayerMask whatIsSolid;
+
+    // arrow lifetime and speed -> combined to determine shooting range (not detection range, which is handled with collider)
     public float lifeTime;
     public float speed;
+
+    // shooting direction
     private Vector3 direction;
     public float damage;
+    [HideInInspector]
+    public string ennemyTag;
 
     void Start()
     {
-        // transform.position = pos1.position;
+        // destory after lifeTime seconds to create range
         Destroy(gameObject, lifeTime);
-        direction = target.transform.position - transform.position;
-    }
-
-    private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject == target) {
-            Unit unit = other.gameObject.GetComponent<Unit>();
-            unit.TakeDamage(damage);
-        }
-        Destroy(gameObject);
+        direction = (target.transform.position - transform.position).normalized;
     }
 
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction.normalized * 0.1f);
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.up, 0.1f, whatIsSolid);
+        // check for impact with ennemy layer + unit
+        if (hitInfo.collider != null) {
+            if (hitInfo.collider.CompareTag(ennemyTag)) {
+                Unit unit = hitInfo.collider.gameObject.GetComponent<Unit>();
+                unit.TakeDamage(damage);
+                Destroy(gameObject);
+            }
+        }
         transform.position += direction * speed * Time.deltaTime;
     }
 }

@@ -2,21 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TownHall : MonoBehaviour
-{
+public class TownHall : Building {
     public Unit unit;
     public float spawnRate;
     private float spawnTimer = 0f;
-    public Vector3 unitSpawnLocation;
+    public Transform spawnLocation;
+    public GameManager gameManager;
 
     void SpawnNewUnit() {
-        Instantiate(unit, unitSpawnLocation, Quaternion.identity);
+        Instantiate(unit, spawnLocation.transform.position, Quaternion.identity);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        unitSpawnLocation = transform.position + new Vector3(1.2f, -1.2f);
         SpawnNewUnit();
     }
 
@@ -25,11 +24,14 @@ public class TownHall : MonoBehaviour
     {
         if (spawnTimer >= spawnRate) {
             SpawnNewUnit();
-            Vector3 spawnLocation = transform.position + new Vector3(1.2f, -1.2f);
-            Unit newUnit = Instantiate(unit, spawnLocation, Quaternion.identity);
             spawnTimer = 0f;
         } else {
             spawnTimer += Time.deltaTime;
         }
+    }
+
+    override protected void Die() {
+        gameManager.EndOfGame(gameObject.tag);
+        base.Die();
     }
 }

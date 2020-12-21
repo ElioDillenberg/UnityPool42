@@ -5,15 +5,32 @@ using UnityEngine;
 
 public class GameRTSController : MonoBehaviour
 {
+    // holds all keybinds/controls for RTSController
     public Controls controls;
+
+    // ennemy tag to determine wether to attack or not
+    public string ennemyTag;
+
+    // green extendable rectangle for unit selection
     [SerializeField]
     private Transform selectionAreaTransform;
+
+    // used to store mouse position when clicking down
     private Vector3 startPositionMouse;
-    private List<Unit> selectedUnits;
+
+    // List of all the units under selection (these units will follow player's instuctions)
+    [HideInInspector]
+    public List<HumanUnit> selectedUnits;
     
     private void Awake(){
-        selectedUnits = new List<Unit>();
+        selectedUnits = new List<HumanUnit>();
         selectionAreaTransform.gameObject.SetActive(false);
+    }
+
+    private void attackEntity(Entity targetToAttack){
+        foreach (Unit selectedUnit in selectedUnits) {
+            selectedUnit.attackEnnemy(targetToAttack);
+        }
     }
 
     // Update is called once per frame
@@ -26,7 +43,7 @@ public class GameRTSController : MonoBehaviour
 
             // Unselect all units if command is not pressed down
             if (!(Input.GetKey(controls.leftCommand) || Input.GetKey(controls.rightCommand))) {
-                foreach(Unit unit in selectedUnits) {
+                foreach(HumanUnit unit in selectedUnits) {
                     unit.setSelectedVisible(false);
                     }
                 selectedUnits.Clear();
@@ -64,7 +81,7 @@ public class GameRTSController : MonoBehaviour
 
             // Select all units within collider 
             foreach (Collider2D collider2D in collider2DArray) {
-                Unit unit = collider2D.GetComponent<Unit>();
+                HumanUnit unit = collider2D.GetComponent<HumanUnit>();
                 if (unit != null) {
                     unit.setSelectedVisible(true);
                     selectedUnits.Add(unit);
@@ -82,14 +99,24 @@ public class GameRTSController : MonoBehaviour
             // get current mouse position
             Vector3 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            // list of positions for my group of units
-            List<Vector3> targetPositionList = GetMultipleCirclesPositionListAround(currentMousePosition, new float[] {1f, 2f, 3f, 4f, 5f}, new int[] {5, 10, 15, 20, 25});
+            Collider2D collider2D = Physics2D.OverlapArea(currentMousePosition, currentMousePosition);
+            if (collider2D) {
+                Entity entity = collider2D.GetComponent<Entity>();
 
-            // make units move to their respective position
-            int targetPositionListIndex = 0;
-            foreach(Unit unit in selectedUnits) {
-                unit.moveToPosition(targetPositionList[targetPositionListIndex]);
-                targetPositionListIndex++;
+                if (entity != null && entity.gameObject.tag == ennemyTag) {
+                    //attack
+                    attackEntity(entity);
+                }
+            } else {
+                //moveToPosition
+                // list of positions for my group of units
+                List<Vector3> targetPositionList = GetMultipleCirclesPositionListAround(currentMousePosition, new float[] {1f, 2f, 3f, 4f, 5f}, new int[] {5, 10, 15, 20, 25});
+                // make units move to their respective position
+                int targetPositionListIndex = 0;
+                foreach(HumanUnit selectedUnit in selectedUnits) {
+                    selectedUnit.moveToPosition(targetPositionList[targetPositionListIndex]);
+                    targetPositionListIndex++;
+                }
             }
         }
     }

@@ -415,10 +415,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controls: {fileID: 1245138574}
+  canStandOn:
+    serializedVersion: 2
+    m_Bits: 0
+  canStandOnColor: {r: 0, g: 0, b: 0, a: 0}
+  scaleX: 0
+  scaleY: 0
+  xInitialPos: 0
+  yInitialPos: 0
   jumpForce: 275
   speed: 7
   gravity: 9.81
-  groundCheck: {fileID: 867382544}
   checkRadius: 0.27
   whatIsGround:
     serializedVersion: 2
@@ -525,11 +532,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controls: {fileID: 1245138574}
-  FinishTriggers:
-  - {fileID: 1427386296}
-  - {fileID: 2046867516}
-  - {fileID: 1976834512}
+  finishTriggers: []
+  players: []
   gameWonCanvas: {fileID: 46947483}
+  gameOverCanvas: {fileID: 0}
+  level: 0
 --- !u!4 &186210172
 Transform:
   m_ObjectHideFlags: 0
@@ -1078,10 +1085,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controls: {fileID: 1245138574}
+  canStandOn:
+    serializedVersion: 2
+    m_Bits: 0
+  canStandOnColor: {r: 0, g: 0, b: 0, a: 0}
+  scaleX: 0
+  scaleY: 0
+  xInitialPos: 0
+  yInitialPos: 0
   jumpForce: 350
   speed: 10
   gravity: 9.81
-  groundCheck: {fileID: 1702792188}
   checkRadius: 0.31
   whatIsGround:
     serializedVersion: 2
@@ -1450,7 +1464,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: d4e73db04ccb94c8a9418220b0454687, type: 3}
   m_Color: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1640,10 +1654,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controls: {fileID: 1245138574}
+  canStandOn:
+    serializedVersion: 2
+    m_Bits: 0
+  canStandOnColor: {r: 0, g: 0, b: 0, a: 0}
+  scaleX: 0
+  scaleY: 0
+  xInitialPos: 0
+  yInitialPos: 0
   jumpForce: 425
   speed: 15
   gravity: 9.81
-  groundCheck: {fileID: 1147048562}
   checkRadius: 0.53
   whatIsGround:
     serializedVersion: 2
